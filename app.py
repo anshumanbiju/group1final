@@ -85,12 +85,19 @@ def predict():
     plt.clf()  # Clear the current figure
 
     response = {
-        'amount_img_path': amount_img_path,
-        'frequency_img_path': frequency_img_path,
-        'recency_img_path': recency_img_path
+        'amount_img_path': 'ClusterId_Amount.png',
+        'frequency_img_path': 'ClusterId_Frequency.png',
+        'recency_img_path': 'ClusterId_Recency.png'
+    }
+    response = {
+        'amount_img_path': 'static/ClusterId_Amount.png',
+        'frequency_img_path': 'static/ClusterId_Frequency.png',
+        'recency_img_path': 'static/ClusterId_Recency.png'
     }
 
-    return jsonify(response)
+    return render_template('index.html', response=response)
+
+    ##return jsonify(response)
 
 
 if __name__ == '__main__':
