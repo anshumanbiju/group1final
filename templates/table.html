@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Details</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url('/static/images/table.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        position: relative;
+        font-family: Arial, sans-serif;
+    }
+    h1 {
+        color: #120000;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 36px;
+        margin-top: 20px;
+    }
+    form {
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input[type="text"] {
+        width: calc(50% - 6px);
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .error-message {
+        color: red;
+        margin-top: 5px;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 18px;
+        margin-left: 50px;
+    }
+    button:hover {
+        background-color: #288f2d;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .results-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        font-size: 20px;
+        background-color: #4CAF50; /* Green background */
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none; /* Remove underline from anchor tag */
+    }
+    .results-button:hover {
+        background-color: #45a049;
+    }
+    .input-container {
+        flex: 1;
+        padding-right: 20px;
+        margin-left: 30px;
+    }
+    .delete-button {
+        background-color: #f44336; /* Red background */
+    }
+    .delete-button:hover {
+        background-color: #cc645d;
+    }
+
+    .top-left-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Hover effect for the button */
+    .top-left-button:hover {
+        background-color: #0056b3;
+    }
+
+</style>
+</head>
+<body>
+
+<h1>Customer Details</h1>
+<a href="addresult.html" class="top-left-button">Back</a>
+<form id="customerForm">
+    <div style="display: flex; flex-wrap: wrap;">
+        <div class="input-container">
+            <label for="customerId"><b>Customer ID:</b></label>
+            <input type="text" id="customerId" name="customerId" autocomplete="off" required><br>
+        </div>
+        <div class="input-container">
+            <label for="amountSpend"><b>Spending Score:</b></label>
+            <input type="text" id="amountSpend" name="amountSpend" autocomplete="off" required><br>
+        </div>
+    </div>
+  
+    <div style="display: flex; flex-wrap: wrap;">
+        <div class="input-container">
+            <label for="recency"><b>Recency Value:</b></label>
+            <input type="text" id="recency" name="recency" autocomplete="off" required><br>
+        </div>
+        <div class="input-container">
+            <label for="frequency"><b>Frequency Value:</b></label>
+            <input type="text" id="frequency" name="frequency" autocomplete="off" required><br>
+        </div>
+    </div>
+  
+    <div style="display: flex; flex-wrap: wrap;">
+        <div class="input-container">
+            <label for="monetary"><b>Monetary Value:</b></label>
+            <input type="text" id="monetary" name="monetary" autocomplete="off" required><br>
+        </div>
+    </div>
+  
+    <button type="button" onclick="addCustomer()">Add Customer Detail</button>
+    <button type="button" class="delete-button" onclick="clearTable()">Delete Existing Customer Details</button>
+    <div id="errorMessage" class="error-message"></div>
+</form>
+
+<table id="customerTable">
+    <thead>
+        <tr>
+            <th>Customer ID</th>
+            <th>Spending Score</th>
+            <th>Recency Value</th>
+            <th>Frequency Value</th>
+            <th>Monetary Value</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        <!-- Customer details will be dynamically added here -->
+    </tbody>
+</table>
+<!--cahneg the page name its just for example, also change line 213-->
+<a href="segmentation.html" class="results-button" id="resultsButton">Results</a>
+
+
+
+<script>
+// Check if there is stored table data
+if (localStorage.getItem("tableData")) {
+    document.getElementById("tableBody").innerHTML = localStorage.getItem("tableData");
+}
+
+function addCustomer() {
+    var customerId = document.getElementById("customerId").value;
+    var amountSpend = document.getElementById("amountSpend").value;
+    var recency = document.getElementById("recency").value;
+    var frequency = document.getElementById("frequency").value;
+    var monetary = document.getElementById("monetary").value;
+  
+    if (customerId === "" || amountSpend === "" || recency === "" || frequency === "" || monetary === "") {
+        document.getElementById("errorMessage").textContent = "All fields are required.";
+        return;
+    }
+  
+    var tableRef = document.getElementById("customerTable").getElementsByTagName('tbody')[0];
+    
+    var newRow = tableRef.insertRow();
+    var cell1 = newRow.insertCell(0);
+    var cell2 = newRow.insertCell(1);
+    var cell3 = newRow.insertCell(2);
+    var cell4 = newRow.insertCell(3);
+    var cell5 = newRow.insertCell(4);
+    
+    cell1.textContent = customerId;
+    cell2.textContent = amountSpend;
+    cell3.textContent = recency;
+    cell4.textContent = frequency;
+    cell5.textContent = monetary;
+    
+    // Store table data in local storage
+    localStorage.setItem("tableData", tableRef.innerHTML);
+    
+    // Clear form fields
+    document.getElementById("customerId").value = "";
+    document.getElementById("amountSpend").value = "";
+    document.getElementById("recency").value = "";
+    document.getElementById("frequency").value = "";
+    document.getElementById("monetary").value = "";
+    
+    // Focus on the first input field for the next entry
+    document.getElementById("customerId").focus();
+  
+    // Clear error message
+    document.getElementById("errorMessage").textContent = "";
+}
+
+function clearTable() {
+    // Clear table data
+    document.getElementById("tableBody").innerHTML = "";
+    // Clear stored table data from local storage
+    localStorage.removeItem("tableData");
+}
+
+function showResults() {
+    // Here you can implement the logic to navigate to the next page or display results
+    window.location.href = "first.html";
+}
+
+// Focus on the next input field when pressing Enter
+document.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        var focusedElement = document.activeElement;
+        var inputs = document.forms["customerForm"].getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            if (focusedElement === inputs[i] && i < inputs.length - 1) {
+                inputs[i + 1].focus();
+                break;
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CUSTOMER SEGMENTATION</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url('/static/images/BG1.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        position: relative;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+    }
+
+    .heading {
+        text-align: center;
+        color: white;
+        margin-top: 10vh;
+        font-size: 60px;
+    }
+
+    .kickoff {
+        text-align: center;
+        color: white;
+        font-size: 24px;
+        margin-top: 20px;
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
+        padding: 15px 30px;
+        background-color: #172c42;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        margin: auto; /* Center the button */
+    }
+
+    .kickoff:hover {
+        background-color: #b3cce7;
+    }
+
+    .about-us {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        background-color: #172c42;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    .group-members {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        color: white;
+        font-size: 18px;
+    }
+
+    .popup {
+        position: absolute;
+        right: 20px;
+        bottom: calc(20px + 40px); /* Adjusted position based on About Us button height */
+        width: 300px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(100%);
+    }
+
+    .popup.show {
+        transform: translateX(0);
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">Customer Segmentation Project</h1>
+        <button class="kickoff" onclick="navigateToProjectPage()">Kick Off</button>
+    </div>
+
+    <div class="group-members">
+        <h2 style="margin-bottom: 10px;">Group Members</h2>
+        <ul style="list-style-type: none; padding: 0;">
+            <li>Anshuman Biju</li>
+            <li>Adithyan M</li>
+            <li>Stephy J Samuel</li>
+            <li>A Suryanarayan</li>
+        </ul>
+    </div>
+
+    <div class="about-us" onclick="togglePopup()">About Us</div>
+
+    <div class="popup" id="popup">
+        <h2>Our Details</h2>
+        <p>We are students of Sree Buddha College of Engineering, Pattoor in the Department of Computer Science and Engineering (Artificial Intelligence and Machine Learning) presenting the 6th sem Btech Mini Project.</p>
+    </div>
+
+    <script>
+        function togglePopup() {
+            var popup = document.getElementById("popup");
+            popup.classList.toggle("show");
+        }
+
+        function navigateToProjectPage() {
+            window.location.href = "second.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Details</title>
+<style>
+    body {
+        background-image: url('/static/images/addresultbg.jpg');
+        background-size: cover; /* Ensures the image covers the entire background */
+        background-repeat: no-repeat; /* Prevents the image from repeating */
+        /* Optional: Add more styles here */
+    }
+    /* Additional CSS styles can be added for other elements */
+</style>
+
+<style>
+    /* Global styles */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f0f0f0;
+    }
+
+    /* Style for the positioned box */
+    .positioned-box {
+        position: absolute;
+        width: 170px; /* Adjust width as needed */
+        height: 250px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    /* Style for the heading */
+    .positioned-box h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    /* Style for the circle image */
+    .circle-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 20px auto;
+    }
+
+    /* Style for the button */
+    .positioned-box button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Hover effect for the button */
+    .positioned-box button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Positioning for the first box */
+    .box1 {
+        top: 250px; /* Adjust top position */
+        left: 500px; /* Adjust left position */
+    }
+
+    /* Positioning for the second box */
+    .box2 {
+        top: 250px; /* Adjust bottom position */
+        left: 750px; /* Adjust right position */
+    }
+    .box1:hover, .box2:hover
+    {
+        transform: scale(1.1); /* Scale the box on hover */
+    }
+</style>
+</head>
+<body>
+    <a href="add.html" class="top-left-button">Home</a>
+
+    <div class="positioned-box box1">
+        <h2>Add Data</h2>
+        <div class="circle-img">
+            <img src="/static/images/2.png" alt="Circle Image" width="80" height="80">
+        </div>
+        <a href="table.html"><button>Add</button></a>
+    </div>
+
+    <div class="positioned-box box2">
+        <h2>Show Result</h2>
+        <div class="circle-img">
+            <img src="/static/images/3.png" alt="Circle Image" width="80" height="80">
+        </div>
+        <a href="segmentation"><button>Add</button></a>
+    </div>
+</body>
+
+<style>
+    /* Global styles */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Style for the top-left button */
+    .top-left-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Hover effect for the button */
+    .top-left-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+    <a href="/" class="top-left-button">Home</a>
+    <!-- Rest of your content here -->
+</body>
+
+</html>
+

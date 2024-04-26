@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Segmentation</title>
+    <style>
+        body {
+            background-image: url('/static/images/last.png');
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e1dfdf;
+            position: relative; /* Set body position to relative */
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 36px;
+            color: white;
+        }
+
+        .dataset {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .dataset table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        .dataset th, .dataset td {
+            padding: 8px;
+            border: 1px solid #dddddd;
+            text-align: left;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #result img {
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 80%; /* Adjust the width of the image */
+        }
+
+        .result-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Adjust as needed */
+        }
+
+        /* Style the result box */
+        .result-box {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Style the button */
+        .go-to-html-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Hover effect for the button */
+        .go-to-html-button:hover {
+            background-color: #0056b3;
+        }
+        .top-left-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Hover effect for the button */
+    .top-left-button:hover {
+        background-color: #0056b3;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Customer Segmentation</h1>
+    <a href="/" class="top-left-button">Home</a>
+    <div class="result-container">
+        <div class="result-box">
+            <h2>Result</h2>
+            <h3>Number of Cluster:3</h2>
+            <img src="/static/cluster_plots.png" alt="Result Image"> <!-- Update with correct image path -->
+        </div>
+    </div>
+
+    <!-- Button to go to HTML -->
+    <button class="go-to-html-button" onclick="goToHTML()">Conclusion</button>
+
+    <!-- JavaScript function to navigate to HTML page -->
+    <script>
+        function goToHTML() {
+            window.location.href = "conclusion.html"; // Update with the correct HTML page URL
+        }
+    </script>
+</body>
+</html>

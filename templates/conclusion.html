@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website with Background Image</title>
+<style>
+    body {
+        background-image: url('/static/images/solidblue.jpg');
+        background-size: cover; /* Ensures the image covers the entire background */
+        background-repeat: no-repeat; /* Prevents the image from repeating */
+        /* Optional: Add more styles here */
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove default padding */
+        height: 100vh; /* Full viewport height */
+        display: flex; /* Flex container */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+    }
+
+    /* Style for the white circle */
+    .circle {
+        width: 700px;
+        height: 700px;
+        background-color: white;
+        border-radius: 50%; /* Creates a circular shape */
+        position: absolute; /* Position the circle relative to its closest positioned ancestor */
+        top: 10px; /* Adjust top position */
+        left: 700px; /* Adjust left position */
+    }
+
+    /* Style for the positioned container */
+    .positioned-container {
+        position: absolute;
+        top: 80px; /* Adjust top position */
+        left: 880px; /* Adjust left position */
+        width: 300px; /* Adjust width as needed */
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Style for the heading */
+    .positioned-container h1 {
+        font-size: 42px;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    /* Style for the paragraph */
+    .positioned-container p {
+        font-size: 20px;
+        color: #666;
+        line-height: 1.6;
+    }
+
+    /* Style for the top-left button */
+    .top-left-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Hover effect for the button */
+    .top-left-button:hover {
+        background-color: #1567c0;
+    }
+
+    /* Style for the thank you note */
+    .thank-you {
+        position: fixed;
+        bottom: 20px;
+        left: 50px;
+        font-size: 60px;
+        color: #333;
+    }
+</style>
+</head>
+<body>
+    <a href="index.html" class="top-left-button">Home</a>
+    <!-- Rest of your HTML content here -->
+    <div class="circle"></div>
+
+    <div class="positioned-container">
+        <h1>Conclusion</h1>
+        <p>Customer segmentation is performed using RFM analysis which offers a powerful method to understand market trends by dissecting customer behavior. By examining Recency, Frequency, and Monetary factors, businesses can identify distinct customer segments, enabling targeted marketing strategies and informed decision-making to stay ahead in dynamic market environments.</p>
+    </div>
+
+    <div class="thank-you">
+        <p>Thank you</p>
+    </div>
+</body>
+</html>

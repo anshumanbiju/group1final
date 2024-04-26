@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- my css -->
+    
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+        <title>File Uploading</title>
+
+    <style>
+        body {
+            background-image: url('/static/images/4.jpg'); /* Change 'background.jpg' to your image file */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .title-box {
+            background-color: rgba(255, 255, 255, 0.7); /* Cream color with some transparency */
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #8B4513; /* Brown color */
+            text-align: center;
+        }
+        .upload-box {
+            background-color: burlywood; /* Cream color */
+            padding: 20px;
+            border-radius: 30px;
+            border: 2px solid #8B4513; /* Border color */
+            margin-left: -30%;
+        }
+        /* Center the submit button */
+        .center-submit {
+            display: flex;
+            padding: 30px;
+            justify-content: center;
+            margin-left: -20%; /* Adjusted margin-left */
+            margin-top: 20px; /* Adjusted margin-top */
+        }
+        /* Change button color */
+        .btn-submit {
+            background-color: #28a745; /* Green color */
+            border-color: #28a745; /* Green color */
+            color: #ffffff; /* White text color */
+        }
+    </style>
+</head>
+<body>
+
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <div class="container-fluid">
+        <a class="navbar-brand text-capitalize" href="/">customer segmentation</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+               
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- navbar end-->
+
+<!-- About Us section -->
+<section class="main_heading my-5">
+    <div class="text-center title-box">
+        <h1 class="title">File Uploading</h1>
+    </div>
+</section>
+<!-- About Us section End -->
+
+<!-- container start -->
+<div class="container">
+    <!-- 1st row end -->
+    <div class="row my-5">
+        <div class="col-lg-6 col-md-6 col-12 col-xxl-6">
+            <figure>
+                <img src="images/g1.jpg" class="img-fluid about_img">
+            </figure>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12 col-xxl-6 d-flex justify-content-center align-items-start flex-column">
+            <!-- Border box for file upload -->
+            <div class="upload-box">
+                <!-- File upload form -->
+<!-- File upload form -->
+<!-- File upload form -->
+        <form id="upload-form" enctype="multipart/form-data">
+            <!-- Move the label to the middle and increase font size -->
+            <div style="text-align: center; font-size: 20px;">
+                <label for="file-upload">Upload CSV file:</label>
+            </div>
+            <!-- Place the input field after the label -->
+            <input type="file" id="file-upload" accept=".csv" required onchange="displayFileName(this)">
+            <!-- Center the submit button -->
+            <div class="center-submit">
+                <button type="button" onclick="handleSubmit()" class="btn btn-outline-info btn-submit">Submit</button>
+            </div>
+            <p id="file-name" style="margin-top: 10px;"></p>
+        </form>
+        <!-- Placeholder for displaying results -->
+        <div id="results"></div> <!-- Add this line -->
+        <div id="spinner" style="display: none;">Processing...</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- 1st row end -->
+</div>
+<!-- container end-->
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<!-- Your custom script -->
+<script>
+    function handleSubmit() {
+        console.log("handleSubmit function executed.");
+        console.log("Form submitted.");
+        var fileInput = document.getElementById("file-upload");
+        var file = fileInput.files[0];
+        if (!file) {
+            alert("Please select a file.");
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("files", file);
+
+        var spinner = document.getElementById("spinner");
+        spinner.style.display = "block";
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/predict");
+        xhr.send(formData);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+
+                    var resultImg = document.createElement("img");
+                    resultImg.src = response.img_path; // Use the img_path from the response
+
+                    // Get the "results" element
+                    var resultsDiv = document.getElementById("results");
+                    resultsDiv.innerHTML = ""; // Clear previous results
+                    resultsDiv.appendChild(resultImg);
+
+                    spinner.style.display = "none";
+
+                    console.log("Redirecting to addresult page...");
+
+                    // Redirect to addresult page
+                    window.location.href = "addresult.html"; // Redirect to addresult.html
+                } else {
+                    alert("Error processing the file.");
+                }
+            }
+        };
+    }
+</script>
+
+</body>
+</html>
